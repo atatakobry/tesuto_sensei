@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
-import { NavMenu } from './common';
-
-import HomePage from './pages/HomePage';
-import UsersPage from './pages/UsersPage';
-import TasksPage from './pages/TasksPage';
+import { NavMenu, NavRoutes } from './common';
 
 import styles from './App.module.scss';
 
@@ -36,12 +27,7 @@ class App extends Component {
             </Breadcrumb>
 
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/users" component={UsersPage} />
-                <Route path="/tasks" component={TasksPage} />
-                <Redirect to="/" />
-              </Switch>
+              <NavRoutes />
             </div>
           </Content>
 
