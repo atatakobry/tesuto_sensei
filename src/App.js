@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
+import Users from './Users';
+
 import styles from './App.module.scss';
 
 const { Header, Content, Footer } = Layout;
@@ -33,7 +35,7 @@ class App extends Component {
             </Breadcrumb>
 
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              Content
+              <Users />
             </div>
           </Content>
 
