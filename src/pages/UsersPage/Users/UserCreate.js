@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { Input, Button } from 'antd';
 
-import { GET_USERS, CREATE_USER } from './gql';
+import { GET_USERS, CREATE_USER } from '../gql';
 
-class CreateUser extends Component {
+class UserCreate extends Component {
   constructor() {
     super();
 
@@ -32,7 +32,6 @@ class CreateUser extends Component {
         {(createUser, { loading }) => (
           <div>
             <Input
-              style={{ marginTop: 45 }}
               addonBefore="Name:"
               placeholder="Please enter name for new user..."
               value={name}
@@ -42,7 +41,7 @@ class CreateUser extends Component {
             />
 
             <Button
-              style={{ marginTop: 6 }}
+              style={{ marginTop: 10 }}
               type="primary"
               icon="user-add"
               disabled={!name || !name.length}
@@ -61,4 +60,4 @@ class CreateUser extends Component {
   }
 }
 
-export default CreateUser;
+export default UserCreate;

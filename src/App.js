@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Layout, Breadcrumb } from 'antd';
 
-import Users from './Users';
+import { routes } from './configs';
+import { NavMenu, NavRoutes } from './common';
 
 import styles from './App.module.scss';
 
@@ -10,21 +12,12 @@ const { Header, Content, Footer } = Layout;
 class App extends Component {
   render() {
     return (
-      <div className={styles.App}>
+      <Router className={styles.App}>
         <Layout className="layout">
           <Header>
             <div className="logo" />
 
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={['1']}
-              style={{ lineHeight: '64px' }}
-            >
-              <Menu.Item key="1">nav 1</Menu.Item>
-              <Menu.Item key="2">nav 2</Menu.Item>
-              <Menu.Item key="3">nav 3</Menu.Item>
-            </Menu>
+            <NavMenu routes={routes} />
           </Header>
 
           <Content style={{ padding: '0 50px' }}>
@@ -35,7 +28,7 @@ class App extends Component {
             </Breadcrumb>
 
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              <Users />
+              <NavRoutes routes={routes} />
             </div>
           </Content>
 
@@ -45,7 +38,7 @@ class App extends Component {
             created by atatakobry
           </Footer>
         </Layout>
-      </div>
+      </Router>
     );
   }
 }

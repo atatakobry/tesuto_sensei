@@ -2,9 +2,9 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import { Button } from 'antd';
 
-import { GET_USERS, DELETE_USER } from './gql';
+import { GET_USERS, DELETE_USER } from '../gql';
 
-function DeleteUser({ id }) {
+function UserDelete({ id }) {
   // TODO: mb use `update` instead of `refetchQueries`; needs to be investigated later
   return (
     <Mutation
@@ -29,4 +29,4 @@ function DeleteUser({ id }) {
   );
 }
 
-export default DeleteUser;
+export default UserDelete;

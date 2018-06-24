@@ -2,9 +2,9 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { List } from 'antd';
 
-import DeleteUser from './DeleteUser';
+import UserDelete from './UserDelete';
 
-import { GET_USERS } from './gql';
+import { GET_USERS } from '../gql';
 
 function UsersList() {
   return (
@@ -12,10 +12,10 @@ function UsersList() {
       {({ data }) => (
         <List
           size="small"
-          header={<strong>USERS:</strong>}
+          bordered
           dataSource={data.users}
           renderItem={({ id, name }) => (
-            <List.Item key={id} actions={[<DeleteUser id={id} />]}>
+            <List.Item key={id} actions={[<UserDelete id={id} />]}>
               {name}
             </List.Item>
           )}
