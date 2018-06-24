@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
 import styles from './App.module.scss';
 
