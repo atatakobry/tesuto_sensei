@@ -5,6 +5,8 @@ import { Layout, Breadcrumb } from 'antd';
 import { routes } from './configs';
 import { NavMenu, NavRoutes } from './common';
 
+import logo from './logo.svg';
+
 import styles from './App.module.scss';
 
 const { Header, Content, Footer } = Layout;
@@ -13,9 +15,9 @@ class App extends Component {
   render() {
     return (
       <Router className={styles.App}>
-        <Layout className="layout">
+        <Layout>
           <Header>
-            <div className="logo" />
+            <img className={styles.Logo} src={logo} alt="テスト" />
 
             <NavMenu routes={routes} />
           </Header>
