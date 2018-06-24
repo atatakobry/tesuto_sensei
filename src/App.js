@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
 import { NavMenu } from './common';
@@ -31,9 +36,12 @@ class App extends Component {
             </Breadcrumb>
 
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/users" component={UsersPage} />
-              <Route path="/tasks" component={TasksPage} />
+              <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route path="/users" component={UsersPage} />
+                <Route path="/tasks" component={TasksPage} />
+                <Redirect to="/" />
+              </Switch>
             </div>
           </Content>
 
