@@ -1,14 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { routes } from '../configs';
-
-function NavRoutes() {
+function NavRoutes({ routes }) {
   return (
     <div>
       <Switch>
-        {routes.map(({ to, component, exact }) => (
-          <Route key={to} path={to} component={component} exact={exact} />
+        {routes.map(({ link, component, exact }) => (
+          <Route key={link} path={link} component={component} exact={exact} />
         ))}
         <Redirect to="/" />
       </Switch>

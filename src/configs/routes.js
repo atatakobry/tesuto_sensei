@@ -2,18 +2,18 @@ import { HomePage, UsersPage, TasksPage } from '../pages';
 
 const routes = [
   {
-    to: '/',
+    link: '/',
     title: 'Home',
     component: HomePage,
     exact: true
   },
   {
-    to: '/users',
+    link: '/users',
     title: 'Users',
     component: UsersPage
   },
   {
-    to: '/tasks',
+    link: '/tasks',
     title: 'Tasks',
     component: TasksPage
   }

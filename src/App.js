@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
+import { routes } from './configs';
 import { NavMenu, NavRoutes } from './common';
 
 import styles from './App.module.scss';
@@ -16,7 +17,7 @@ class App extends Component {
           <Header>
             <div className="logo" />
 
-            <NavMenu />
+            <NavMenu routes={routes} />
           </Header>
 
           <Content style={{ padding: '0 50px' }}>
@@ -27,7 +28,7 @@ class App extends Component {
             </Breadcrumb>
 
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              <NavRoutes />
+              <NavRoutes routes={routes} />
             </div>
           </Content>
 
