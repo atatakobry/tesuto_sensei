@@ -35,7 +35,7 @@ class App extends Component {
           </Content>
 
           <Footer style={{ textAlign: 'center' }}>
-            テスト (te-su-to) © 2018
+            テスト © 2018
             <br />
             created by atatakobry
           </Footer>
