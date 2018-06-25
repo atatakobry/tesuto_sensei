@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 
 import { routes } from './configs';
 import { NavMenu, NavRoutes } from './common';
@@ -22,13 +22,7 @@ class App extends Component {
             <NavMenu routes={routes} />
           </Header>
 
-          <Content style={{ padding: '0 50px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-
+          <Content style={{ padding: '24px 50px 0 50px' }}>
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
               <NavRoutes routes={routes} />
             </div>
