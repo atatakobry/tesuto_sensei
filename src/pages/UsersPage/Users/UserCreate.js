@@ -43,7 +43,7 @@ class UserCreate extends Component {
             <Button
               style={{ marginTop: 10 }}
               type="primary"
-              icon="user-add"
+              icon="plus"
               disabled={!name || !name.length}
               loading={loading}
               onClick={() => {

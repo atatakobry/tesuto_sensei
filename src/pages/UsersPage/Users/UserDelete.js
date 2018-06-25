@@ -20,7 +20,7 @@ function UserDelete({ id }) {
         <Button
           type="danger"
           size="small"
-          icon="user-delete"
+          icon="close"
           loading={loading}
           onClick={deleteUser}
         />
