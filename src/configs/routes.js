@@ -1,4 +1,4 @@
-import { HomePage, UsersPage, TasksPage } from '../pages';
+import { HomePage, UsersPage, TasksPage, ExercisesPage } from '../pages';
 
 const routes = [
   {
@@ -16,6 +16,11 @@ const routes = [
     link: '/tasks',
     title: 'Tasks',
     component: TasksPage
+  },
+  {
+    link: '/exercises',
+    title: 'Exercises',
+    component: ExercisesPage
   }
 ];
 
