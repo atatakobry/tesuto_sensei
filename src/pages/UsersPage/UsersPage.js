@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
 import { Row, Col, Card } from 'antd';
 
+import { prisma } from '../../configs';
+
 import UsersList from './Users/UsersList';
 import UserCreate from './Users/UserCreate';
 
-const client = new ApolloClient({
-  uri: 'https://eu1.prisma.sh/atatakobry/tesuto/dev'
-});
+class Users extends Component {
+  constructor() {
+    super();
 
-function Users() {
-  return (
-    <ApolloProvider client={client}>
-      <div>
-        <h1>Users</h1>
+    this.client = new ApolloClient({
+      uri: prisma.url
+    });
+  }
 
-        <Row gutter={20}>
-          <Col span={16}>
-            <Card>
-              <UsersList />
-            </Card>
-          </Col>
+  render() {
+    return (
+      <ApolloProvider client={this.client}>
+        <div>
+          <h1>Users</h1>
 
-          <Col span={8}>
-            <Card>
-              <UserCreate />
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    </ApolloProvider>
-  );
+          <Row gutter={20}>
+            <Col span={16}>
+              <Card>
+                <UsersList />
+              </Card>
+            </Col>
+
+            <Col span={8}>
+              <Card>
+                <UserCreate />
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      </ApolloProvider>
+    );
+  }
 }
 
 export default Users;

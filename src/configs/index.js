@@ -1,3 +1,4 @@
+import prisma from './prisma';
 import routes from './routes';
 
-export { routes };
+export { prisma, routes };
