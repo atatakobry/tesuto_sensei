@@ -2,3 +2,15 @@ type User {
   id: ID! @unique
   name: String!
 }
+
+type Task {
+  id: ID! @unique
+  type: Int!
+  title: String!
+}
+
+type Exercise {
+  id: ID! @unique
+  taskType: Int!
+  answer: String!
+}
