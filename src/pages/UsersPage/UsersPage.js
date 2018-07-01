@@ -8,7 +8,7 @@ import { prisma } from '../../configs';
 import UsersList from './Users/UsersList';
 import UserCreate from './Users/UserCreate';
 
-class Users extends Component {
+class UsersPage extends Component {
   constructor() {
     super();
 
@@ -42,4 +42,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default UsersPage;
