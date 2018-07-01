@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { Input, Button } from 'antd';
 
-import { GET_USERS, CREATE_USER } from '../gql';
+import { GET_USERS, CREATE_USER } from '../../../graphql/users';
 
 class UserCreate extends Component {
   constructor() {

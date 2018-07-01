@@ -4,7 +4,7 @@ import { List } from 'antd';
 
 import UserDelete from './UserDelete';
 
-import { GET_USERS } from '../gql';
+import { GET_USERS } from '../../../graphql/users';
 
 function UsersList() {
   return (

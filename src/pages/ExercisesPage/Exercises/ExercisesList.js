@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Table } from 'antd';
 
-import { GET_EXERCISES } from '../gql';
+import { GET_EXERCISES } from '../../../graphql/exercises';
 
 const columns = [
   {

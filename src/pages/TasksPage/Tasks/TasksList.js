@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Table } from 'antd';
 
-import { GET_TASKS } from '../gql';
+import { GET_TASKS } from '../../../graphql/tasks';
 
 const columns = [
   {
