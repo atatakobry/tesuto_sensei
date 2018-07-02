@@ -11,6 +11,6 @@ type Task {
 
 type Exercise {
   id: ID! @unique
-  taskType: Int!
+  task: Task!
   answer: String!
 }

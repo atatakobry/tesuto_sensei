@@ -4,7 +4,11 @@ const GET_EXERCISES = gql`
   {
     exercises {
       id
-      taskType
+      task {
+        id
+        type
+        title
+      }
       answer
     }
   }

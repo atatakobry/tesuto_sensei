@@ -6,8 +6,8 @@ import { GET_EXERCISES } from '../../../graphql/exercises';
 
 const columns = [
   {
-    title: 'Task Type',
-    dataIndex: 'taskType'
+    title: 'Task',
+    dataIndex: 'task.title'
   },
   {
     title: 'Answer',
