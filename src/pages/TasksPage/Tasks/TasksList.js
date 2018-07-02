@@ -12,7 +12,8 @@ const columns = [
     dataIndex: 'title'
   },
   {
-    title: 'Action',
+    title: '',
+    width: '1%',
     render: task => <TaskDelete id={task.id} />
   }
 ];
