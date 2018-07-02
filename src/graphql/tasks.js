@@ -18,4 +18,12 @@ const CREATE_TASK = gql`
   }
 `;
 
-export { GET_TASKS, CREATE_TASK };
+const DELETE_TASK = gql`
+  mutation deleteTask($id: ID!) {
+    deleteTask(where: { id: $id }) {
+      id
+    }
+  }
+`;
+
+export { GET_TASKS, CREATE_TASK, DELETE_TASK };

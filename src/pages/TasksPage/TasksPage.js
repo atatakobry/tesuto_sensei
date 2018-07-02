@@ -6,6 +6,7 @@ import { Row, Col, Card } from 'antd';
 import { prisma } from '../../configs';
 
 import TasksList from './Tasks/TasksList';
+import TaskCreate from './Tasks/TaskCreate';
 
 class TasksPage extends Component {
   constructor() {
@@ -26,6 +27,12 @@ class TasksPage extends Component {
             <Col span={16}>
               <Card>
                 <TasksList />
+              </Card>
+            </Col>
+
+            <Col span={8}>
+              <Card>
+                <TaskCreate />
               </Card>
             </Col>
           </Row>

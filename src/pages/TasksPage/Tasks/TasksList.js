@@ -2,12 +2,18 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Table } from 'antd';
 
+import TaskDelete from './TaskDelete';
+
 import { GET_TASKS } from '../../../graphql/tasks';
 
 const columns = [
   {
     title: 'Title',
     dataIndex: 'title'
+  },
+  {
+    title: 'Action',
+    render: task => <TaskDelete id={task.id} />
   }
 ];
 
