@@ -20,8 +20,9 @@ function TasksList() {
     <Query query={GET_TASKS}>
       {({ data }) => (
         <Table
-          size="small"
           bordered
+          size="small"
+          rowKey="id"
           columns={columns}
           dataSource={data.tasks}
         />

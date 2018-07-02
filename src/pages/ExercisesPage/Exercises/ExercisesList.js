@@ -20,8 +20,9 @@ function ExercisesList() {
     <Query query={GET_EXERCISES}>
       {({ data }) => (
         <Table
-          size="small"
           bordered
+          size="small"
+          rowKey="id"
           columns={columns}
           dataSource={data.exercises}
         />
