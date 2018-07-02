@@ -4,10 +4,18 @@ const GET_TASKS = gql`
   {
     tasks {
       id
-      type
       title
     }
   }
 `;
 
-export { GET_TASKS };
+const CREATE_TASK = gql`
+  mutation createTask($title: String!) {
+    createTask(data: { title: $title }) {
+      id
+      title
+    }
+  }
+`;
+
+export { GET_TASKS, CREATE_TASK };

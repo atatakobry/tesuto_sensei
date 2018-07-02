@@ -5,7 +5,6 @@ type User {
 
 type Task {
   id: ID! @unique
-  type: Int!
   title: String!
 }
 

@@ -6,10 +6,6 @@ import { GET_TASKS } from '../../../graphql/tasks';
 
 const columns = [
   {
-    title: 'Type',
-    dataIndex: 'type'
-  },
-  {
     title: 'Title',
     dataIndex: 'title'
   }

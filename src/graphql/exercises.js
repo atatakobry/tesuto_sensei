@@ -6,7 +6,6 @@ const GET_EXERCISES = gql`
       id
       task {
         id
-        type
         title
       }
       answer
