@@ -1,6 +1,7 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import { Icon, Table } from 'antd';
+import { Button, Table } from 'antd';
 
 import { GET_EXERCISES } from '../../../graphql/exercises';
 
@@ -19,8 +20,20 @@ const columns = [
     dataIndex: 'description'
   },
   {
-    title: <Icon type="ellipsis" />,
-    width: '1%'
+    width: '1%',
+    render: ({ id }) => (
+      <Route
+        render={({ history }) => (
+          <Button
+            size="small"
+            icon="eye"
+            onClick={() => {
+              history.push(`/exercises/${id}`);
+            }}
+          />
+        )}
+      />
+    )
   }
 ];
 
