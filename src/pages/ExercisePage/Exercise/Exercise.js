@@ -7,7 +7,8 @@ import { GET_EXERCISE } from '../../../graphql/exercises';
 const columns = [
   {
     title: 'ID',
-    dataIndex: 'id'
+    dataIndex: 'id',
+    render: id => <code>{id}</code>
   },
   {
     title: 'Type',
