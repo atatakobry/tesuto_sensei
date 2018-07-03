@@ -1,20 +1,21 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Table } from 'antd';
-
-import TaskDelete from './TaskDelete';
+import { Icon, Table } from 'antd';
 
 import { GET_TASKS } from '../../../graphql/tasks';
 
 const columns = [
   {
+    title: 'Type',
+    dataIndex: 'type'
+  },
+  {
     title: 'Title',
     dataIndex: 'title'
   },
   {
-    title: '',
-    width: '1%',
-    render: task => <TaskDelete id={task.id} />
+    title: <Icon type="ellipsis" />,
+    width: '1%'
   }
 ];
 

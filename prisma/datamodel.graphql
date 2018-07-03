@@ -5,6 +5,7 @@ type User {
 
 type Task {
   id: ID! @unique
+  type: TaskType!
   title: String!
 }
 
@@ -12,4 +13,9 @@ type Exercise {
   id: ID! @unique
   task: Task!
   answer: String!
+}
+
+enum TaskType {
+  CORRECT_ORDER_OF_WORDS
+  WHICH_IS_CORRECT
 }

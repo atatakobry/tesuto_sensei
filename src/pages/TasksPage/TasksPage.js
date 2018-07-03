@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
-import { Row, Col, Card } from 'antd';
 
 import { prisma } from '../../configs';
 
 import TasksList from './Tasks/TasksList';
-import TaskCreate from './Tasks/TaskCreate';
 
 class TasksPage extends Component {
   constructor() {
@@ -23,19 +21,7 @@ class TasksPage extends Component {
         <div>
           <h1>Tasks</h1>
 
-          <Row gutter={20}>
-            <Col span={16}>
-              <Card>
-                <TasksList />
-              </Card>
-            </Col>
-
-            <Col span={8}>
-              <Card>
-                <TaskCreate />
-              </Card>
-            </Col>
-          </Row>
+          <TasksList />
         </div>
       </ApolloProvider>
     );
