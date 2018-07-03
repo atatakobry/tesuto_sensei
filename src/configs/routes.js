@@ -2,27 +2,27 @@ import { HomePage, UsersPage, ExercisesPage, ExercisePage } from '../pages';
 
 const routes = [
   {
-    link: '/',
+    path: '/',
     title: 'Home',
     component: HomePage,
     exact: true
   },
 
   {
-    link: '/users',
+    path: '/users',
     title: 'Users',
     component: UsersPage,
     exact: true
   },
 
   {
-    link: '/exercises',
+    path: '/exercises',
     title: 'Exercises',
     component: ExercisesPage,
     exact: true
   },
   {
-    link: '/exercises/:type',
+    path: '/exercises/:type',
     title: 'Exercise',
     component: ExercisePage,
     exact: true,

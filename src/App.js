@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { routes } from './configs';
-import { NavMenu, NavRoutes } from './common';
+import { NavMenu, Breadcrumbs, NavRoutes } from './common';
 
 import logo from './logo.svg';
 
@@ -22,7 +22,9 @@ class App extends Component {
             <NavMenu routes={routes} />
           </Header>
 
-          <Content style={{ padding: '24px 50px 0 50px' }}>
+          <Content style={{ padding: '24px 50px 0' }}>
+            <Breadcrumbs routes={routes} />
+
             <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
               <NavRoutes routes={routes} />
             </div>
