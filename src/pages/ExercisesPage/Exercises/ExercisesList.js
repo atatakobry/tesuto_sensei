@@ -2,6 +2,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Table } from 'antd';
 
+import ExerciseDelete from './ExerciseDelete';
+
 import { GET_EXERCISES } from '../../../graphql/exercises';
 
 const columns = [
@@ -12,6 +14,11 @@ const columns = [
   {
     title: 'Answer',
     dataIndex: 'answer'
+  },
+  {
+    title: '',
+    width: '1%',
+    render: exercise => <ExerciseDelete id={exercise.id} />
   }
 ];
 

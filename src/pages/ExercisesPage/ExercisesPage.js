@@ -6,6 +6,7 @@ import { Row, Col, Card } from 'antd';
 import { prisma } from '../../configs';
 
 import ExercisesList from './Exercises/ExercisesList';
+import ExerciseCreate from './Exercises/ExerciseCreate';
 
 class ExercisesPage extends Component {
   constructor() {
@@ -23,9 +24,15 @@ class ExercisesPage extends Component {
           <h1>Exercises</h1>
 
           <Row gutter={20}>
-            <Col span={16}>
+            <Col span={14}>
               <Card>
                 <ExercisesList />
+              </Card>
+            </Col>
+
+            <Col span={10}>
+              <Card>
+                <ExerciseCreate />
               </Card>
             </Col>
           </Row>
