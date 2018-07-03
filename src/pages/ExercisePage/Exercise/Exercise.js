@@ -1,9 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import { Button, Table } from 'antd';
+import { Table } from 'antd';
 
-import { GET_EXERCISES } from '../../../graphql/exercises';
+import { GET_EXERCISE } from '../../../graphql/exercises';
 
 const columns = [
   {
@@ -22,28 +21,12 @@ const columns = [
   {
     title: 'Description',
     dataIndex: 'description'
-  },
-  {
-    width: '1%',
-    render: ({ id }) => (
-      <Route
-        render={({ history }) => (
-          <Button
-            size="small"
-            icon="eye"
-            onClick={() => {
-              history.push(`/exercises/${id}`);
-            }}
-          />
-        )}
-      />
-    )
   }
 ];
 
-function ExercisesList() {
+function Exercise({ id }) {
   return (
-    <Query query={GET_EXERCISES}>
+    <Query query={GET_EXERCISE} variables={{ id }}>
       {({ loading, data }) => {
         if (loading) return 'Loading...';
 
@@ -53,7 +36,7 @@ function ExercisesList() {
             size="small"
             rowKey="id"
             columns={columns}
-            dataSource={data.exercises}
+            dataSource={[data.exercise]}
           />
         );
       }}
@@ -61,4 +44,4 @@ function ExercisesList() {
   );
 }
 
-export default ExercisesList;
+export default Exercise;

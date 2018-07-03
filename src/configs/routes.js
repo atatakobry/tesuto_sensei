@@ -22,7 +22,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/exercises/:type',
+    path: '/exercises/:id',
     title: 'Exercise',
     component: ExercisePage,
     exact: true,
