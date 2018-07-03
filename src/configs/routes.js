@@ -24,7 +24,8 @@ const routes = [
   {
     link: '/exercises/:type',
     title: 'Exercise',
-    component: ExercisePage
+    component: ExercisePage,
+    hidden: true
   }
 ];
 
