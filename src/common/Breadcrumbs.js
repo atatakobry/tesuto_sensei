@@ -16,27 +16,21 @@ function Breadcrumbs({ location, routes }) {
 
   return (
     <Breadcrumb style={{ padding: '0 0 16px' }}>
-      {paths.map((path, index) => {
+      {paths.map(path => {
         const currentRoute = routes.find(route => matchPath(path, route));
 
         if (!currentRoute) {
           return null;
         }
 
-        // NOTE: make complex title for breadcrumbs; add additional information if it's necessary
-        const complexTitle =
-          currentRoute.title.toLowerCase() === parts[index].toLowerCase()
-            ? currentRoute.title
-            : `${currentRoute.title} – ${parts[index]}`;
-
         return (
           <Breadcrumb.Item key={path}>
             {location.pathname === path ? (
               // NOTE: display title of current page in breadcrumbs as plain text, not link
-              <span>{complexTitle}</span>
+              <span>{currentRoute.title}</span>
             ) : (
               // NOTE: using `path` instead of `currentRoute.path` allows to link to `path/param`, not `path/:param`
-              <Link to={path}>{complexTitle}</Link>
+              <Link to={path}>{currentRoute.title}</Link>
             )}
           </Breadcrumb.Item>
         );
