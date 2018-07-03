@@ -1,4 +1,4 @@
-import { HomePage, UsersPage, TasksPage, ExercisesPage } from '../pages';
+import { HomePage, UsersPage, ExercisesPage, ExercisePage } from '../pages';
 
 const routes = [
   {
@@ -7,20 +7,24 @@ const routes = [
     component: HomePage,
     exact: true
   },
+
   {
     link: '/users',
     title: 'Users',
-    component: UsersPage
+    component: UsersPage,
+    exact: true
   },
-  {
-    link: '/tasks',
-    title: 'Tasks',
-    component: TasksPage
-  },
+
   {
     link: '/exercises',
     title: 'Exercises',
-    component: ExercisesPage
+    component: ExercisesPage,
+    exact: true
+  },
+  {
+    link: '/exercises/:type',
+    title: 'Exercise',
+    component: ExercisePage
   }
 ];
 

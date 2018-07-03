@@ -4,9 +4,7 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import TasksList from './Tasks/TasksList';
-
-class TasksPage extends Component {
+class ExercisePage extends Component {
   constructor() {
     super();
 
@@ -19,13 +17,11 @@ class TasksPage extends Component {
     return (
       <ApolloProvider client={this.client}>
         <div>
-          <h1>Tasks</h1>
-
-          <TasksList />
+          <h1>Exercise</h1>
         </div>
       </ApolloProvider>
     );
   }
 }
 
-export default TasksPage;
+export default ExercisePage;

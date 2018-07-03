@@ -3,19 +3,27 @@ type User {
   name: String!
 }
 
-type Task {
-  id: ID! @unique
-  type: TaskType!
-  title: String!
-}
-
 type Exercise {
   id: ID! @unique
-  task: Task!
+  type: ExerciseType
+  title: String
+  description: String
+}
+
+type E_CorrectOrderOfWords {
+  id: ID! @unique
+  exercise: Exercise!
   answer: String!
 }
 
-enum TaskType {
+type E_WhichIsCorrect {
+  id: ID! @unique
+  exercise: Exercise!
+  options: [String!]!
+  answer: String!
+}
+
+enum ExerciseType {
   CORRECT_ORDER_OF_WORDS
   WHICH_IS_CORRECT
 }

@@ -1,24 +1,26 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Table } from 'antd';
-
-import ExerciseDelete from './ExerciseDelete';
+import { Icon, Table } from 'antd';
 
 import { GET_EXERCISES } from '../../../graphql/exercises';
 
 const columns = [
   {
-    title: 'Task',
-    dataIndex: 'task.title'
+    title: 'Type',
+    dataIndex: 'type',
+    render: type => <code>{type}</code>
   },
   {
-    title: 'Answer',
-    dataIndex: 'answer'
+    title: 'Title',
+    dataIndex: 'title'
   },
   {
-    title: '',
-    width: '1%',
-    render: exercise => <ExerciseDelete id={exercise.id} />
+    title: 'Description',
+    dataIndex: 'description'
+  },
+  {
+    title: <Icon type="ellipsis" />,
+    width: '1%'
   }
 ];
 
