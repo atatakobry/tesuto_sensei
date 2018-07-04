@@ -1,16 +1,16 @@
 import React from 'react';
 import { Table } from 'antd';
 
-function Exercise({ columns, exercise }) {
+function ExercisesList({ columns, exercises }) {
   return (
     <Table
       bordered
       size="small"
-      rowKey="key"
+      rowKey="id"
       columns={columns}
-      dataSource={exercise}
+      dataSource={exercises}
     />
   );
 }
 
-export default Exercise;
+export default ExercisesList;

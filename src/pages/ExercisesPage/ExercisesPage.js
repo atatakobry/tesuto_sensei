@@ -4,7 +4,9 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import ExercisesList from './Exercises/ExercisesList';
+import { exerciseTypes } from '../../dictionaries';
+
+import { ExercisesListContainer } from './ExercisesList';
 
 class ExercisesPage extends Component {
   constructor() {
@@ -21,7 +23,9 @@ class ExercisesPage extends Component {
         <div>
           <h1>Exercises</h1>
 
-          <ExercisesList />
+          {exerciseTypes.LIST.map(({ uid, name }) => (
+            <ExercisesListContainer key={uid} typeUid={uid} />
+          ))}
         </div>
       </ApolloProvider>
     );

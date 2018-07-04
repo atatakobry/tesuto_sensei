@@ -1,29 +1,19 @@
 type User {
-  id: ID! @unique
-  name: String!
+    id: ID! @unique
+    name: String!
+}
+
+type ExerciseType {
+    id: ID! @unique
+    uid: Int! @unique
+    name: String
 }
 
 type Exercise {
-  id: ID! @unique
-  type: ExerciseType
-  title: String
-  description: String
-}
-
-type E_CorrectOrderOfWords {
-  id: ID! @unique
-  exercise: Exercise!
-  answer: String!
-}
-
-type E_WhichIsCorrect {
-  id: ID! @unique
-  exercise: Exercise!
-  options: [String!]!
-  answer: String!
-}
-
-enum ExerciseType {
-  CORRECT_ORDER_OF_WORDS
-  WHICH_IS_CORRECT
+    id: ID! @unique
+    type: ExerciseType!
+    title: String
+    description: String
+    options: [String!]
+    answer: String
 }

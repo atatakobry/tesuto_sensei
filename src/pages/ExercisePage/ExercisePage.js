@@ -4,24 +4,27 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import Exercise from './Exercise/Exercise';
+import { ExerciseContainer } from './Exercise';
 
 class ExercisePage extends Component {
   constructor() {
     super();
 
     this.client = new ApolloClient({
-      uri: prisma.url
+      uri: prisma.url,
+      addTypename: false
     });
   }
 
   render() {
+    const id = this.props.match.params.id;
+
     return (
       <ApolloProvider client={this.client}>
         <div>
           <h1>Exercise</h1>
 
-          <Exercise id={this.props.match.params.id} />
+          <ExerciseContainer id={id} />
         </div>
       </ApolloProvider>
     );

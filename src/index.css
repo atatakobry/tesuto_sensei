@@ -4,3 +4,7 @@ body {
   font-family: sans-serif;
   background: #f0f2f5;
 }
+
+pre {
+  margin: 0;
+}
