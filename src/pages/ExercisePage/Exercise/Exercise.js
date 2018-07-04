@@ -6,6 +6,7 @@ function Exercise({ columns, exercise }) {
     <Table
       bordered
       size="small"
+      pagination={false}
       rowKey="key"
       columns={columns}
       dataSource={exercise}
