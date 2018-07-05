@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { routes } from './configs';
-import { NavMenu, Breadcrumbs, NavRoutes } from './common';
+import { ScrollRestoration, NavMenu, Breadcrumbs, NavRoutes } from './common';
 
 import logo from './logo.svg';
 
@@ -15,27 +15,29 @@ class App extends Component {
   render() {
     return (
       <Router className={styles.App}>
-        <Layout>
-          <Header>
-            <img className={styles.Logo} src={logo} alt="テスト" />
+        <ScrollRestoration>
+          <Layout>
+            <Header>
+              <img className={styles.Logo} src={logo} alt="テスト" />
 
-            <NavMenu routes={routes} />
-          </Header>
+              <NavMenu routes={routes} />
+            </Header>
 
-          <Content style={{ padding: '24px 50px 0' }}>
-            <Breadcrumbs routes={routes} />
+            <Content style={{ padding: '24px 50px 0' }}>
+              <Breadcrumbs routes={routes} />
 
-            <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-              <NavRoutes routes={routes} />
-            </div>
-          </Content>
+              <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
+                <NavRoutes routes={routes} />
+              </div>
+            </Content>
 
-          <Footer style={{ textAlign: 'center' }}>
-            テスト © 2018
-            <br />
-            created by atatakobry
-          </Footer>
-        </Layout>
+            <Footer style={{ textAlign: 'center' }}>
+              テスト © 2018
+              <br />
+              created by atatakobry
+            </Footer>
+          </Layout>
+        </ScrollRestoration>
       </Router>
     );
   }
