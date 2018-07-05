@@ -3,4 +3,12 @@ import NavMenu from './NavMenu';
 import NavRoutes from './NavRoutes';
 import ScrollRestoration from './ScrollRestoration';
 
-export { Breadcrumbs, NavMenu, NavRoutes, ScrollRestoration };
+import onExerciseDeleteConfirm from './onExerciseDeleteConfirm';
+
+export {
+  Breadcrumbs,
+  NavMenu,
+  NavRoutes,
+  ScrollRestoration,
+  onExerciseDeleteConfirm
+};

@@ -1,19 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { Modal, Button } from 'antd';
+import { Button } from 'antd';
 
 import { DELETE_EXERCISE } from '../../../graphql/exercises';
-
-function onExerciseDeleteConfirm(onOk) {
-  Modal.confirm({
-    title: 'Are you sure want to delete this exercise?',
-    okText: 'Yes',
-    okType: 'danger',
-    cancelText: 'No',
-    onOk: onOk
-  });
-}
+import { onExerciseDeleteConfirm } from '../../../common';
 
 function ExerciseDelete({ id }) {
   return (
@@ -31,7 +22,7 @@ function ExerciseDelete({ id }) {
               type="danger"
               icon="delete"
               loading={loading}
-              onClick={() => onExerciseDeleteConfirm(deleteExercise)}
+              onClick={() => onExerciseDeleteConfirm({ onOk: deleteExercise })}
             >
               Delete
             </Button>

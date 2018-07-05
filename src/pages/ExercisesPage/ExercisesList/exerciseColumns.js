@@ -1,8 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Button } from 'antd';
+import { Mutation } from 'react-apollo';
+import { Button, Divider } from 'antd';
 
 import { exerciseTypes } from '../../../dictionaries';
+import {
+  DELETE_EXERCISE,
+  GET_EXERCISES_BY_TYPE
+} from '../../../graphql/exercises';
+import { onExerciseDeleteConfirm } from '../../../common';
 
 const exerciseColumns = {
   [exerciseTypes.ET_10]: [
@@ -16,17 +22,35 @@ const exerciseColumns = {
       render: answer => <code>{answer}</code>
     },
     {
-      width: '1%',
+      width: '100px',
       render: ({ id }) => (
         <Route
           render={({ history }) => (
-            <Button
-              size="small"
-              icon="eye"
-              onClick={() => {
-                history.push(`/exercises/${id}`);
-              }}
-            />
+            <div style={{ textAlign: 'center' }}>
+              <Mutation mutation={DELETE_EXERCISE} variables={{ id }}>
+                {(deleteExercise, { loading }) => (
+                  <Button
+                    size="small"
+                    type="danger"
+                    icon="delete"
+                    loading={loading}
+                    onClick={() =>
+                      onExerciseDeleteConfirm({ onOk: deleteExercise })
+                    }
+                  />
+                )}
+              </Mutation>
+
+              <Divider type="vertical" />
+
+              <Button
+                size="small"
+                icon="eye"
+                onClick={() => {
+                  history.push(`/exercises/${id}`);
+                }}
+              />
+            </div>
           )}
         />
       )
@@ -52,17 +76,54 @@ const exerciseColumns = {
       render: answer => <code>{answer}</code>
     },
     {
-      width: '1%',
-      render: ({ id }) => (
+      width: '100px',
+      render: ({ type, id }) => (
         <Route
           render={({ history }) => (
-            <Button
-              size="small"
-              icon="eye"
-              onClick={() => {
-                history.push(`/exercises/${id}`);
-              }}
-            />
+            <div style={{ textAlign: 'center' }}>
+              <Mutation
+                mutation={DELETE_EXERCISE}
+                variables={{ id }}
+                update={(cache, { data: { deleteExercise } }) => {
+                  const { exercises } = cache.readQuery({
+                    query: GET_EXERCISES_BY_TYPE,
+                    variables: { typeUid: type.uid }
+                  });
+
+                  cache.writeQuery({
+                    query: GET_EXERCISES_BY_TYPE,
+                    variables: { typeUid: type.uid },
+                    data: {
+                      exercises: exercises.filter(
+                        ({ id }) => id !== deleteExercise.id
+                      )
+                    }
+                  });
+                }}
+              >
+                {(deleteExercise, { loading }) => (
+                  <Button
+                    size="small"
+                    type="danger"
+                    icon="delete"
+                    loading={loading}
+                    onClick={() =>
+                      onExerciseDeleteConfirm({ onOk: deleteExercise })
+                    }
+                  />
+                )}
+              </Mutation>
+
+              <Divider type="vertical" />
+
+              <Button
+                size="small"
+                icon="eye"
+                onClick={() => {
+                  history.push(`/exercises/${id}`);
+                }}
+              />
+            </div>
           )}
         />
       )
