@@ -51,4 +51,12 @@ const GET_EXERCISE = gql`
   }
 `;
 
-export { GET_EXERCISES, GET_EXERCISES_BY_TYPE, GET_EXERCISE };
+const DELETE_EXERCISE = gql`
+  mutation deleteExercise($id: ID!) {
+    deleteExercise(where: { id: $id }) {
+      id
+    }
+  }
+`;
+
+export { GET_EXERCISES, GET_EXERCISES_BY_TYPE, GET_EXERCISE, DELETE_EXERCISE };

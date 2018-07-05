@@ -1,8 +1,9 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import { Card } from 'antd';
+import { Route } from 'react-router-dom';
+import { Query, Mutation } from 'react-apollo';
+import { Card, Button } from 'antd';
 
-import { GET_EXERCISE } from '../../../graphql/exercises';
+import { GET_EXERCISE, DELETE_EXERCISE } from '../../../graphql/exercises';
 
 import convertExercise from './convertExercise';
 import exerciseColumns from './exerciseColumns';
@@ -29,6 +30,31 @@ function ExerciseContainer({ id }) {
             }
           >
             <Exercise columns={exerciseColumns} exercise={exercise} />
+
+            <div style={{ marginTop: 20, textAlign: 'right' }}>
+              <Route
+                render={({ history }) => (
+                  <Mutation
+                    mutation={DELETE_EXERCISE}
+                    variables={{ id }}
+                    onCompleted={() => {
+                      history.push('/exercises');
+                    }}
+                  >
+                    {(deleteUser, { loading }) => (
+                      <Button
+                        type="danger"
+                        icon="delete"
+                        loading={loading}
+                        onClick={deleteUser}
+                      >
+                        Delete
+                      </Button>
+                    )}
+                  </Mutation>
+                )}
+              />
+            </div>
           </Card>
         );
       }}
