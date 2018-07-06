@@ -22,7 +22,7 @@ const exerciseColumns = {
       render: answer => <code>{answer}</code>
     },
     {
-      width: '100px',
+      width: '110px',
       render: ({ id }) => (
         <Route
           render={({ history }) => (
@@ -76,7 +76,7 @@ const exerciseColumns = {
       render: answer => <code>{answer}</code>
     },
     {
-      width: '100px',
+      width: '110px',
       render: ({ type, id }) => (
         <Route
           render={({ history }) => (
