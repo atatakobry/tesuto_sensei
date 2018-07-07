@@ -57,6 +57,8 @@ const CREATE_EXERCISE = gql`
       id
       type {
         id
+        uid
+        name
       }
       title
       description
