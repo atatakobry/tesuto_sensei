@@ -87,7 +87,6 @@ class ExerciseCreateModal extends Component {
           <Form.Item {...formItemLayout} label="Type">
             <Select
               style={{ width: '100%' }}
-              allowClear
               placeholder="Select a type of exercise..."
               defaultValue={typeUid}
               onSelect={typeUid => this.setState({ typeUid })}
