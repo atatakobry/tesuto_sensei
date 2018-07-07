@@ -26,19 +26,18 @@ class ExercisesListContainer extends Component {
     return (
       <Query
         query={GET_EXERCISES_BY_TYPE}
-        variables={{ typeUid: this.props.typeUid }}
+        variables={{ typeUid: this.props.type.uid }}
       >
         {({ loading, data }) => {
           if (loading) return 'Loading...';
-
-          const { uid, name } = data.exercises[0].type;
 
           return (
             <Card
               style={{ marginTop: 20 }}
               title={
                 <h3 style={{ margin: 0 }}>
-                  {name} <code>(uid: {uid})</code>
+                  {this.props.type.name}{' '}
+                  <code>(uid: {this.props.type.uid})</code>
                 </h3>
               }
               extra={
@@ -52,12 +51,12 @@ class ExercisesListContainer extends Component {
               }
             >
               <ExercisesList
-                columns={exerciseColumns[uid]}
+                columns={exerciseColumns[this.props.type.uid]}
                 exercises={data.exercises}
               />
 
               <ExerciseCreateModal
-                defaults={{ typeUid: uid }}
+                defaults={{ typeUid: this.props.type.uid }}
                 isVisible={this.state.isExerciseCreateModalVisible}
                 onOk={this.onExerciseCreateModalClose}
                 onCancel={this.onExerciseCreateModalClose}

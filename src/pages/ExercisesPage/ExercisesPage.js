@@ -23,8 +23,8 @@ class ExercisesPage extends Component {
         <div>
           <h1>Exercises</h1>
 
-          {exerciseTypes.LIST.map(({ uid }) => (
-            <ExercisesListContainer key={uid} typeUid={uid} />
+          {exerciseTypes.LIST.map(type => (
+            <ExercisesListContainer key={type.uid} type={type} />
           ))}
         </div>
       </ApolloProvider>
