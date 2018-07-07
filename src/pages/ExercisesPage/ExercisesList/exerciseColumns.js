@@ -23,11 +23,30 @@ const exerciseColumns = {
     },
     {
       width: '110px',
-      render: ({ id }) => (
+      render: ({ type, id }) => (
         <Route
           render={({ history }) => (
             <div style={{ textAlign: 'center' }}>
-              <Mutation mutation={DELETE_EXERCISE} variables={{ id }}>
+              <Mutation
+                mutation={DELETE_EXERCISE}
+                variables={{ id }}
+                update={(cache, { data: { deleteExercise } }) => {
+                  const { exercises } = cache.readQuery({
+                    query: GET_EXERCISES_BY_TYPE,
+                    variables: { typeUid: type.uid }
+                  });
+
+                  cache.writeQuery({
+                    query: GET_EXERCISES_BY_TYPE,
+                    variables: { typeUid: type.uid },
+                    data: {
+                      exercises: exercises.filter(
+                        ({ id }) => id !== deleteExercise.id
+                      )
+                    }
+                  });
+                }}
+              >
                 {(deleteExercise, { loading }) => (
                   <Button
                     size="small"
