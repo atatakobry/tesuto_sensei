@@ -1,17 +1,10 @@
-import { HomePage, UsersPage, ExercisesPage, ExercisePage } from '../pages';
+import { HomePage, ExercisesPage, ExercisePage } from '../pages';
 
 const routes = [
   {
     path: '/',
     title: 'Home',
     component: HomePage,
-    exact: true
-  },
-
-  {
-    path: '/users',
-    title: 'Users',
-    component: UsersPage,
     exact: true
   },
 
