@@ -20,11 +20,11 @@ $ npm i
 $ npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see application
+Open [http://localhost:3000](http://localhost:3000) to start working with application
 
 ### Update schema
 
-Make some changes in `datamodel.graphql`. Then
+Make some changes in `datamodel.graphql`. Then:
 
 ```
 $ cd prisma
