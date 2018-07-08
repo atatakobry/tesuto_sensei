@@ -57,10 +57,10 @@ class Exercises extends Component {
               />
 
               <ExerciseCreateModal
-                defaults={{ typeUid: this.props.type.uid }}
+                exercise={{ type: { uid: this.props.type.uid } }}
                 isVisible={this.state.isExerciseCreateModalVisible}
-                onOk={this.onExerciseCreateModalClose}
                 onCancel={this.onExerciseCreateModalClose}
+                onOk={this.onExerciseCreateModalClose}
               />
             </Card>
           );

@@ -14,17 +14,18 @@ function ExerciseDelete({ id }) {
           mutation={DELETE_EXERCISE}
           variables={{ id }}
           onCompleted={() => {
-            setTimeout(() => history.push('/exercises'), 1000);
+            history.push('/exercises');
           }}
         >
           {(deleteExercise, { loading }) => (
             <Button
+              size="small"
               type="danger"
               icon="delete"
               loading={loading}
               onClick={() => onExerciseDeleteConfirm({ onOk: deleteExercise })}
             >
-              Delete
+              Delete exercise
             </Button>
           )}
         </Mutation>

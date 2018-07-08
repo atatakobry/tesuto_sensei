@@ -68,6 +68,26 @@ const CREATE_EXERCISE = gql`
   }
 `;
 
+const UPDATE_EXERCISE = gql`
+  mutation updateExercise(
+    $exercise: ExerciseUpdateInput!
+    $where: ExerciseWhereUniqueInput!
+  ) {
+    updateExercise(data: $exercise, where: $where) {
+      id
+      type {
+        id
+        uid
+        name
+      }
+      title
+      description
+      options
+      answer
+    }
+  }
+`;
+
 const DELETE_EXERCISE = gql`
   mutation deleteExercise($id: ID!) {
     deleteExercise(where: { id: $id }) {
@@ -81,5 +101,6 @@ export {
   GET_EXERCISES_BY_TYPE,
   GET_EXERCISE,
   CREATE_EXERCISE,
+  UPDATE_EXERCISE,
   DELETE_EXERCISE
 };

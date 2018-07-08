@@ -4,10 +4,11 @@ import { Modal, Form, Select, Input, Button } from 'antd';
 
 import { exerciseTypes } from '../dictionaries';
 
-import { CREATE_EXERCISE, GET_EXERCISES_BY_TYPE } from '../graphql/exercises';
+import { UPDATE_EXERCISE } from '../graphql/exercises';
 
-class ExerciseCreateModal extends Component {
+class ExerciseEditModal extends Component {
   state = {
+    id: '',
     type: {
       uid: undefined
     },
@@ -20,7 +21,7 @@ class ExerciseCreateModal extends Component {
 
   render() {
     const { isVisible, onCancel, onOk } = this.props;
-    const { type, title, description, options, answer } = this.state;
+    const { id, type, title, description, options, answer } = this.state;
     const typeUid = type && type.uid;
 
     const formItemLayout = {
@@ -34,18 +35,18 @@ class ExerciseCreateModal extends Component {
       }
     };
 
-    // TODO: deal with `ExerciseCreateInput`; idk how it works and why it's so difficult T_T
+    // TODO: deal with `ExerciseUpdateInput`, `ExerciseWhereUniqueInput`; idk how it works and why it's so difficult T_T
     // NOTE: do i need to wrap the whole component with `Mutation`? :thinking:
     return (
       <Modal
         visible={isVisible}
-        title="NEW EXERCISE"
+        title="EDITING EXERCISE"
         footer={
           <Fragment>
             <Button onClick={onCancel}>Cancel</Button>
 
             <Mutation
-              mutation={CREATE_EXERCISE}
+              mutation={UPDATE_EXERCISE}
               variables={{
                 exercise: {
                   type: { connect: { uid: typeUid } },
@@ -53,31 +54,20 @@ class ExerciseCreateModal extends Component {
                   description,
                   options: { set: options },
                   answer
+                },
+                where: {
+                  id
                 }
-              }}
-              update={(cache, { data: { createExercise } }) => {
-                const { exercises } = cache.readQuery({
-                  query: GET_EXERCISES_BY_TYPE,
-                  variables: { typeUid }
-                });
-
-                cache.writeQuery({
-                  query: GET_EXERCISES_BY_TYPE,
-                  variables: { typeUid },
-                  data: {
-                    exercises: [].concat(exercises, createExercise)
-                  }
-                });
               }}
               onCompleted={onOk}
             >
-              {(createExercise, { loading }) => (
+              {(updateExercise, { loading }) => (
                 <Button
                   type="primary"
                   loading={loading}
-                  onClick={createExercise}
+                  onClick={updateExercise}
                 >
-                  Create
+                  Save
                 </Button>
               )}
             </Mutation>
@@ -87,10 +77,14 @@ class ExerciseCreateModal extends Component {
         onCancel={onCancel}
       >
         <Form>
+          <Form.Item {...formItemLayout} label="id">
+            <Input disabled value={id} />
+          </Form.Item>
+
           <Form.Item {...formItemLayout} label="type">
             <Select
               style={{ width: '100%' }}
-              placeholder="Select a type of exercise..."
+              disabled
               defaultValue={typeUid}
               onSelect={typeUid => this.setState({ type: { uid: typeUid } })}
             >
@@ -153,4 +147,4 @@ class ExerciseCreateModal extends Component {
   }
 }
 
-export default ExerciseCreateModal;
+export default ExerciseEditModal;
