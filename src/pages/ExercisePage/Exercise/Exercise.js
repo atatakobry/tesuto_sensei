@@ -4,6 +4,8 @@ import { Card } from 'antd';
 
 import { GET_EXERCISE } from '../../../graphql/exercises';
 
+import { Loader } from '../../../common';
+
 import convertExercise from './convertExercise';
 import exerciseColumns from './exerciseColumns';
 
@@ -14,7 +16,7 @@ function Exercise({ id }) {
   return (
     <Query query={GET_EXERCISE} variables={{ id }}>
       {({ loading, data }) => {
-        if (loading) return 'Loading...';
+        if (loading) return <Loader />;
 
         const { uid, name } = data.exercise.type;
         // NOTE: convert object-like exercise into array of `{ key, value }` items with sorting, etc.

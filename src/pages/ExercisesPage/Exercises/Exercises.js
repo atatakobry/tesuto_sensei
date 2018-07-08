@@ -4,7 +4,7 @@ import { Card, Button } from 'antd';
 
 import { GET_EXERCISES_BY_TYPE } from '../../../graphql/exercises';
 
-import { ExerciseCreateModal } from '../../../common';
+import { Loader, ExerciseCreateModal } from '../../../common';
 
 import exerciseColumns from './exerciseColumns';
 
@@ -30,7 +30,7 @@ class Exercises extends Component {
         variables={{ typeUid: this.props.type.uid }}
       >
         {({ loading, data }) => {
-          if (loading) return 'Loading...';
+          if (loading) return <Loader />;
 
           return (
             <Card
