@@ -4,6 +4,7 @@ const routes = [
   {
     path: '/',
     title: 'Home',
+    icon: 'home',
     component: HomePage,
     exact: true
   },
@@ -11,6 +12,7 @@ const routes = [
   {
     path: '/exercises',
     title: 'Exercises',
+    icon: 'bars',
     component: ExercisesPage,
     exact: true
   },
