@@ -4,32 +4,31 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import { exerciseTypes } from '../../dictionaries';
+import { Exercise } from './Exercise';
 
-import { Exercises } from './Exercises';
-
-class ExercisesPage extends Component {
+class ExercisePage extends Component {
   constructor() {
     super();
 
     this.client = new ApolloClient({
-      uri: prisma.url
+      uri: prisma.url,
+      addTypename: false
     });
   }
 
   render() {
+    const id = this.props.match.params.id;
+
     return (
       <ApolloProvider client={this.client}>
         <div>
-          <h1>Exercises</h1>
+          <h1>Exercise</h1>
 
-          {exerciseTypes.LIST.map(type => (
-            <Exercises key={type.uid} type={type} />
-          ))}
+          <Exercise id={id} />
         </div>
       </ApolloProvider>
     );
   }
 }
 
-export default ExercisesPage;
+export default ExercisePage;

@@ -1,26 +1,32 @@
-import { HomePage, UsersPage, TasksPage, ExercisesPage } from '../pages';
+import { HomePage, UsersPage, ExercisesPage, ExercisePage } from '../pages';
 
 const routes = [
   {
-    link: '/',
+    path: '/',
     title: 'Home',
     component: HomePage,
     exact: true
   },
+
   {
-    link: '/users',
+    path: '/users',
     title: 'Users',
-    component: UsersPage
+    component: UsersPage,
+    exact: true
   },
+
   {
-    link: '/tasks',
-    title: 'Tasks',
-    component: TasksPage
-  },
-  {
-    link: '/exercises',
+    path: '/exercises',
     title: 'Exercises',
-    component: ExercisesPage
+    component: ExercisesPage,
+    exact: true
+  },
+  {
+    path: '/exercises/:id',
+    title: 'Exercise',
+    component: ExercisePage,
+    exact: true,
+    hidden: true
   }
 ];
 

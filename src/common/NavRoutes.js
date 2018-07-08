@@ -5,8 +5,8 @@ function NavRoutes({ routes }) {
   return (
     <div>
       <Switch>
-        {routes.map(({ link, component, exact }) => (
-          <Route key={link} path={link} component={component} exact={exact} />
+        {routes.map(({ path, component, exact }) => (
+          <Route key={path} path={path} component={component} exact={exact} />
         ))}
         <Redirect to="/" />
       </Switch>

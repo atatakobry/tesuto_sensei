@@ -13,9 +13,9 @@ function NavMenu({ location, routes }) {
       selectedKeys={[key]}
       style={{ lineHeight: '64px' }}
     >
-      {routes.map(({ link, title }) => (
-        <Menu.Item key={link}>
-          <Link to={link}>{title}</Link>
+      {routes.filter(route => !route.hidden).map(({ path, title }) => (
+        <Menu.Item key={path}>
+          <Link to={path}>{title}</Link>
         </Menu.Item>
       ))}
     </Menu>

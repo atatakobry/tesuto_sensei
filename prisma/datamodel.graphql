@@ -1,4 +1,19 @@
 type User {
-  id: ID! @unique
-  name: String!
+    id: ID! @unique
+    name: String!
+}
+
+type ExerciseType {
+    id: ID! @unique
+    uid: Int! @unique
+    name: String
+}
+
+type Exercise {
+    id: ID! @unique
+    type: ExerciseType!
+    title: String
+    description: String
+    options: [String!]
+    answer: String
 }

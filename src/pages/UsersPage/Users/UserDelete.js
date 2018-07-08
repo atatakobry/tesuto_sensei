@@ -2,7 +2,7 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import { Button } from 'antd';
 
-import { GET_USERS, DELETE_USER } from '../gql';
+import { GET_USERS, DELETE_USER } from '../../../graphql/users';
 
 function UserDelete({ id }) {
   // TODO: mb use `update` instead of `refetchQueries`; needs to be investigated later
