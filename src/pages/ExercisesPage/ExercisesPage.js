@@ -6,7 +6,7 @@ import { prisma } from '../../configs';
 
 import { exerciseTypes } from '../../dictionaries';
 
-import { ExercisesListContainer } from './ExercisesList';
+import { Exercises } from './Exercises';
 
 class ExercisesPage extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class ExercisesPage extends Component {
           <h1>Exercises</h1>
 
           {exerciseTypes.LIST.map(type => (
-            <ExercisesListContainer key={type.uid} type={type} />
+            <Exercises key={type.uid} type={type} />
           ))}
         </div>
       </ApolloProvider>

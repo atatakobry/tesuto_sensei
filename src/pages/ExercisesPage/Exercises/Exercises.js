@@ -7,9 +7,10 @@ import { GET_EXERCISES_BY_TYPE } from '../../../graphql/exercises';
 import { ExerciseCreateModal } from '../../../common';
 
 import exerciseColumns from './exerciseColumns';
+
 import ExercisesList from './ExercisesList';
 
-class ExercisesListContainer extends Component {
+class Exercises extends Component {
   state = {
     isExerciseCreateModalVisible: false
   };
@@ -69,4 +70,4 @@ class ExercisesListContainer extends Component {
   }
 }
 
-export default ExercisesListContainer;
+export default Exercises;

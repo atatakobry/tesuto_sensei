@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import { ExerciseContainer } from './Exercise';
+import { Exercise } from './Exercise';
 
 class ExercisePage extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class ExercisePage extends Component {
         <div>
           <h1>Exercise</h1>
 
-          <ExerciseContainer id={id} />
+          <Exercise id={id} />
         </div>
       </ApolloProvider>
     );

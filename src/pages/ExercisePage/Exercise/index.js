@@ -1,3 +1,3 @@
-import ExerciseContainer from './Exercise.container';
+import Exercise from './Exercise';
 
-export { ExerciseContainer };
+export { Exercise };
