@@ -1,6 +1,5 @@
 import Breadcrumbs from './Breadcrumbs';
-import ExerciseCreateModal from './ExerciseCreateModal';
-import ExerciseEditModal from './ExerciseEditModal';
+import { ExerciseCreateModal, ExerciseEditModal } from './ExerciseModals';
 import Loader from './Loader';
 import NavMenu from './NavMenu';
 import NavRoutes from './NavRoutes';

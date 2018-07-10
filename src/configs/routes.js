@@ -17,7 +17,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/exercises/:id',
+    path: '/exercises/:typeUid/:id',
     title: 'Exercise',
     component: ExercisePage,
     exact: true,

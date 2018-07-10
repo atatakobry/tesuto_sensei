@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from 'react';
-import { Query } from 'react-apollo';
+import { Route } from 'react-router-dom';
+import { Query, Mutation } from 'react-apollo';
 import { Button, Card, Divider } from 'antd';
 
-import { GET_EXERCISE } from '../../../graphql/exercises';
-
-import { Loader, ExerciseEditModal } from '../../../common';
-
-import convertExercise from './convertExercise';
-import exerciseColumns from './exerciseColumns';
+import { GET_EXERCISE, DELETE_EXERCISE } from '../../../graphql/exercises';
+import { exerciseTypes } from '../../../dictionaries';
+import {
+  Loader,
+  ExerciseEditModal,
+  onExerciseDeleteConfirm
+} from '../../../common';
 
 import ExerciseDetails from './ExerciseDetails';
-import ExerciseDelete from './ExerciseDelete';
 
 class Exercise extends Component {
   state = {
@@ -27,25 +28,48 @@ class Exercise extends Component {
 
   render() {
     return (
-      <Query query={GET_EXERCISE} variables={{ id: this.props.id }}>
+      <Query
+        query={GET_EXERCISE[this.props.typeUid]}
+        variables={{ id: this.props.id }}
+      >
         {({ loading, data }) => {
           if (loading) return <Loader />;
-
-          const { uid, name } = data.exercise.type;
-          // NOTE: convert object-like exercise into array of `{ key, value }` items with sorting, etc.
-          // TODO: add possibility to sort fields in necessary order
-          const _exercise = convertExercise(data.exercise);
 
           return (
             <Card
               title={
                 <h3 style={{ margin: 0 }}>
-                  {name} <code>(uid: {uid})</code>
+                  {exerciseTypes.MAP[this.props.typeUid].name}
+                  <code> (uid: {this.props.typeUid})</code>
                 </h3>
               }
               extra={
                 <Fragment>
-                  <ExerciseDelete id={this.props.id} />
+                  <Route
+                    render={({ history }) => (
+                      <Mutation
+                        mutation={DELETE_EXERCISE}
+                        variables={{ id: this.props.id }}
+                        onCompleted={() => {
+                          history.push('/exercises');
+                        }}
+                      >
+                        {(deleteExercise, { loading }) => (
+                          <Button
+                            size="small"
+                            type="danger"
+                            icon="delete"
+                            loading={loading}
+                            onClick={() =>
+                              onExerciseDeleteConfirm({ onOk: deleteExercise })
+                            }
+                          >
+                            Delete exercise
+                          </Button>
+                        )}
+                      </Mutation>
+                    )}
+                  />
 
                   <Divider type="vertical" />
 
@@ -59,7 +83,7 @@ class Exercise extends Component {
                 </Fragment>
               }
             >
-              <ExerciseDetails columns={exerciseColumns} exercise={_exercise} />
+              <ExerciseDetails exercise={data.exercise} />
 
               <ExerciseEditModal
                 exercise={data.exercise}

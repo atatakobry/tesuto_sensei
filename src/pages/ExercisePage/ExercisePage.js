@@ -17,14 +17,15 @@ class ExercisePage extends Component {
   }
 
   render() {
-    const id = this.props.match.params.id;
-
     return (
       <ApolloProvider client={this.client}>
         <div>
           <h1>Exercise</h1>
 
-          <Exercise id={id} />
+          <Exercise
+            id={this.props.match.params.id}
+            typeUid={this.props.match.params.typeUid}
+          />
         </div>
       </ApolloProvider>
     );

@@ -3,7 +3,6 @@ import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
-
 import { exerciseTypes } from '../../dictionaries';
 
 import { Exercises } from './Exercises';
@@ -23,8 +22,8 @@ class ExercisesPage extends Component {
         <div>
           <h1>Exercises</h1>
 
-          {exerciseTypes.LIST.map(type => (
-            <Exercises key={type.uid} type={type} />
+          {exerciseTypes.LIST.map(({ uid }) => (
+            <Exercises key={uid} typeUid={uid} />
           ))}
         </div>
       </ApolloProvider>
