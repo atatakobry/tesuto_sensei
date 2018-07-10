@@ -20,15 +20,26 @@ const fields = {
 };
 
 class ExerciseCreateModal extends Component {
-  state = {
+  initialState = {
     type: {
       uid: undefined
     },
     title: '',
     description: '',
     options: ['', '', ''],
-    answer: '',
+    answer: ''
+  };
+
+  state = {
+    ...this.initialState,
     ...this.props.exercise
+  };
+
+  resetState = () => {
+    this.setState({
+      ...this.initialState,
+      ...this.props.exercise
+    });
   };
 
   render() {
@@ -87,6 +98,7 @@ class ExerciseCreateModal extends Component {
             </Mutation>
           </Fragment>
         }
+        afterClose={this.resetState}
         // NOTE: pass `onCancel` handler for close button in top right corner of modal
         onCancel={onCancel}
       >
