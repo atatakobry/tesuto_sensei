@@ -1,4 +1,4 @@
-import { HomePage, ExercisesPage, ExercisePage } from '../pages';
+import { HomePage, ExercisesPage, ExercisePage, TestsPage } from '../pages';
 
 const routes = [
   {
@@ -22,6 +22,14 @@ const routes = [
     component: ExercisePage,
     exact: true,
     hidden: true
+  },
+
+  {
+    path: '/tests',
+    title: 'Tests',
+    icon: 'file-text',
+    component: TestsPage,
+    exact: true
   }
 ];
 
