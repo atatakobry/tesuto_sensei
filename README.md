@@ -1,8 +1,7 @@
 # テスト (せんせい)
 
-![license](https://img.shields.io/github/license/atatakobry/tesuto_sensei.svg)
 ![GitHub package version](https://img.shields.io/github/package-json/v/atatakobry/tesuto_sensei.svg)
-![GitHub release](https://img.shields.io/github/release/atatakobry/tesuto_sensei/all.svg)
+![license](https://img.shields.io/github/license/atatakobry/tesuto_sensei.svg)
 
 ### Preparation
 
