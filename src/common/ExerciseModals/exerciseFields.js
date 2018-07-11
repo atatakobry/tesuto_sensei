@@ -70,7 +70,8 @@ const AnswerField = ({ answer, onChange }) => (
 
 const OptionField = ({ index = 0, option, onChange }) => (
   <Form.Item {...formItemLayout} label={`option #${index + 1}`}>
-    <Input
+    <Input.TextArea
+      autosize
       placeholder={`Input option #${index + 1}...`}
       value={option}
       onChange={e => onChange(e.target.value)}
