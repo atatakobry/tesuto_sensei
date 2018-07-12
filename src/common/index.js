@@ -10,6 +10,7 @@ import Loader from './Loader';
 import NavMenu from './NavMenu';
 import NavRoutes from './NavRoutes';
 import ScrollRestoration from './ScrollRestoration';
+import { onTestDeleteConfirm } from './TestModals';
 
 export {
   getLowerLatinPrefix,
@@ -20,5 +21,6 @@ export {
   NavMenu,
   NavRoutes,
   ScrollRestoration,
-  onExerciseDeleteConfirm
+  onExerciseDeleteConfirm,
+  onTestDeleteConfirm
 };

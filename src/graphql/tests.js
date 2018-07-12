@@ -42,4 +42,12 @@ const GET_TEST = gql`
   }
 `;
 
-export { GET_TESTS, GET_TEST };
+const DELETE_TEST = gql`
+  mutation deleteTest($id: ID!) {
+    deleteTest(where: { id: $id }) {
+      id
+    }
+  }
+`;
+
+export { GET_TESTS, GET_TEST, DELETE_TEST };
