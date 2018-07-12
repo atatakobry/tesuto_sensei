@@ -8,22 +8,17 @@ import { onTestDeleteConfirm } from '../../../common';
 
 const columns = [
   {
-    title: (
-      <code>
-        <strong>Title</strong>
-      </code>
-    ),
-    dataIndex: 'title',
-    render: title => <code>{title}</code>
+    title: <strong>TITLE</strong>,
+    dataIndex: 'title'
   },
   {
-    title: (
-      <code>
-        <strong>Description</strong>
-      </code>
-    ),
-    dataIndex: 'description',
-    render: description => <code>{description}</code>
+    title: <strong>DESCRIPTION</strong>,
+    dataIndex: 'description'
+  },
+  {
+    title: <strong>NUMBER OF EXERCISES</strong>,
+    width: '200px',
+    render: ({ exercises }) => exercises.length
   },
   {
     width: '110px',

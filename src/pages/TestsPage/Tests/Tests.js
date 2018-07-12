@@ -17,11 +17,13 @@ class Tests extends Component {
           return (
             <Card
               style={{ marginTop: 20 }}
-              title={<h3 style={{ margin: 0 }}>List of available tests</h3>}
+              title={<h2 style={{ margin: 0 }}>List of available tests</h2>}
               extra={
-                <Button size="small" icon="plus" onClick={() => {}}>
-                  New test
-                </Button>
+                <div className="ant-card-extra-inner">
+                  <Button size="small" icon="plus" onClick={() => {}}>
+                    New test
+                  </Button>
+                </div>
               }
             >
               <TestsList tests={data.tests} />

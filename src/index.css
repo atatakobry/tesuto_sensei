@@ -8,3 +8,9 @@ body {
 pre {
   margin: 0;
 }
+
+.ant-card-extra-inner {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

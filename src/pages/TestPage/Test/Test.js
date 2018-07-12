@@ -17,9 +17,14 @@ class Test extends Component {
 
           return (
             <Card
-              title={<h2 style={{ margin: 0 }}>{data.test.title}</h2>}
-              extra={
+              title={
                 <Fragment>
+                  <h2 style={{ margin: 0 }}>{data.test.title}</h2>
+                  <div>(number of exercises: {data.test.exercises.length})</div>
+                </Fragment>
+              }
+              extra={
+                <div className="ant-card-extra-inner">
                   <Route
                     render={({ history }) => (
                       <Mutation
@@ -51,7 +56,7 @@ class Test extends Component {
                   <Button size="small" icon="edit" onClick={() => {}}>
                     Edit exercise
                   </Button>
-                </Fragment>
+                </div>
               }
             >
               <TestDetails test={data.test} />
