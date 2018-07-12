@@ -1,4 +1,10 @@
-import { HomePage, ExercisesPage, ExercisePage, TestsPage } from '../pages';
+import {
+  HomePage,
+  ExercisesPage,
+  ExercisePage,
+  TestsPage,
+  TestPage
+} from '../pages';
 
 const routes = [
   {
@@ -30,6 +36,13 @@ const routes = [
     icon: 'file-text',
     component: TestsPage,
     exact: true
+  },
+  {
+    path: '/tests/:id',
+    title: 'Test',
+    component: TestPage,
+    exact: true,
+    hidden: true
   }
 ];
 

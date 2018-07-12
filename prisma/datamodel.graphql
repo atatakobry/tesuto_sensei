@@ -12,3 +12,10 @@ type Exercise {
     options: [String!]
     answer: String
 }
+
+type Test {
+    id: ID! @unique
+    title: String!
+    description: String
+    exercises: [Exercise!]!
+}

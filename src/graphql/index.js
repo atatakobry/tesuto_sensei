@@ -1,3 +1,4 @@
 import exercises from './exercises';
+import tests from './tests';
 
-export { exercises };
+export { exercises, tests };

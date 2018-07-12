@@ -4,9 +4,9 @@ import ApolloClient from 'apollo-boost';
 
 import { prisma } from '../../configs';
 
-import Tests from './Tests';
+import Test from './Test';
 
-class TestsPage extends Component {
+class TestPage extends Component {
   client = new ApolloClient({
     uri: prisma.url
   });
@@ -15,13 +15,13 @@ class TestsPage extends Component {
     return (
       <ApolloProvider client={this.client}>
         <Fragment>
-          <h1>Tests</h1>
+          <h1>Test</h1>
 
-          <Tests />
+          <Test id={this.props.match.params.id} />
         </Fragment>
       </ApolloProvider>
     );
   }
 }
 
-export default TestsPage;
+export default TestPage;

@@ -1,3 +1,5 @@
+import getLowerLatinPrefix from './getLowerLatinPrefix';
+
 import Breadcrumbs from './Breadcrumbs';
 import {
   ExerciseCreateModal,
@@ -10,6 +12,7 @@ import NavRoutes from './NavRoutes';
 import ScrollRestoration from './ScrollRestoration';
 
 export {
+  getLowerLatinPrefix,
   Breadcrumbs,
   ExerciseCreateModal,
   ExerciseEditModal,
