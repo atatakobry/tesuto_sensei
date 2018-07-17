@@ -18,4 +18,5 @@ type Test {
     title: String!
     description: String
     exercises: [Exercise!]!
+    exercisesOrder: [ID!]
 }

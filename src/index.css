@@ -14,3 +14,11 @@ pre {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.ant-form-item-label label {
+  font-weight: 500;
+}
+
+.ant-table-small {
+  border: 0;
+}

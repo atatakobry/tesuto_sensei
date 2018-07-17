@@ -38,6 +38,29 @@ const GET_TEST = gql`
         options
         answer
       }
+      exercisesOrder
+    }
+  }
+`;
+
+const UPDATE_TEST = gql`
+  mutation updateTest($test: TestUpdateInput!, $where: TestWhereUniqueInput!) {
+    updateTest(data: $test, where: $where) {
+      id
+      title
+      description
+      exercises {
+        id
+        type {
+          id
+          uid
+        }
+        title
+        description
+        options
+        answer
+      }
+      exercisesOrder
     }
   }
 `;
@@ -50,4 +73,4 @@ const DELETE_TEST = gql`
   }
 `;
 
-export { GET_TESTS, GET_TEST, DELETE_TEST };
+export { GET_TESTS, GET_TEST, UPDATE_TEST, DELETE_TEST };
