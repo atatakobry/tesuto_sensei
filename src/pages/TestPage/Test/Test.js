@@ -4,9 +4,10 @@ import { Query, Mutation } from 'react-apollo';
 import { Card, Button, Divider } from 'antd';
 
 import { GET_TEST, DELETE_TEST } from '../../../graphql/tests';
-import { Loader, TestEditModal, onTestDeleteConfirm } from '../../../common';
+import { Loader, onTestDeleteConfirm } from '../../../common';
 
 import TestDetails from './TestDetails';
+import TestEditModal from '../TestEditModal';
 
 class Test extends Component {
   state = {

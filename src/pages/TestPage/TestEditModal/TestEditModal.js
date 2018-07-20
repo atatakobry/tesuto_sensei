@@ -3,13 +3,14 @@ import { Mutation } from 'react-apollo';
 import { Modal, Form, Button, Row, Col } from 'antd';
 import update from 'immutability-helper';
 
-import { UPDATE_TEST } from '../../graphql/tests';
+import { UPDATE_TEST } from '../../../graphql/tests';
 
 import {
-  TitleField,
-  DescriptionField,
+  TestTitle,
+  TestDescription,
   ExercisesDraggableList
-} from './testFields';
+} from './testEditComponents';
+import ExercisesAddModal from '../ExercisesAddModal';
 
 class TestEditModal extends Component {
   initialState = {
@@ -17,7 +18,8 @@ class TestEditModal extends Component {
     title: '',
     description: '',
     exercises: [],
-    exercisesOrder: []
+    exercisesOrder: [],
+    isExercisesAddModalVisible: false
   };
 
   state = {
@@ -55,34 +57,31 @@ class TestEditModal extends Component {
   };
 
   render() {
-    const { isVisible, onCancel, onOk } = this.props;
-    const { id, title, description, exercises, exercisesOrder } = this.state;
-
-    // TODO: deal with `TestUpdateInput`, `TestWhereUniqueInput`; idk how it works and why it's so difficult T_T
-    // NOTE: do i need to wrap the whole component with `Mutation`? :thinking:
     return (
       <Modal
         width={1360}
-        visible={isVisible}
+        visible={this.props.isVisible}
         title="EDITING TEST"
         footer={
           <Fragment>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={this.props.onCancel}>Cancel</Button>
 
             <Mutation
               mutation={UPDATE_TEST}
               variables={{
                 test: {
-                  title,
-                  description,
-                  exercises: { connect: exercises.map(({ id }) => ({ id })) },
-                  exercisesOrder: { set: exercisesOrder }
+                  title: this.state.title,
+                  description: this.state.description,
+                  exercises: {
+                    connect: this.state.exercises.map(({ id }) => ({ id }))
+                  },
+                  exercisesOrder: { set: this.state.exercisesOrder }
                 },
                 where: {
-                  id
+                  id: this.state.id
                 }
               }}
-              onCompleted={onOk}
+              onCompleted={this.props.onOk}
             >
               {(updateExercise, { loading }) => (
                 <Button
@@ -98,35 +97,54 @@ class TestEditModal extends Component {
         }
         afterClose={this.resetState}
         // NOTE: pass `onCancel` handler for close button in top right corner of modal
-        onCancel={onCancel}
+        onCancel={this.props.onCancel}
       >
         <Form layout="vertical">
           <Row gutter={20}>
             <Col span={10}>
-              <TitleField
-                title={title}
+              <TestTitle
+                title={this.state.title}
                 onChange={title => this.setState({ title })}
               />
 
-              <DescriptionField
-                description={description}
+              <TestDescription
+                description={this.state.description}
                 onChange={description => this.setState({ description })}
               />
             </Col>
 
             <Col span={14}>
               <ExercisesDraggableList
-                exercises={exercises}
+                exercises={this.state.exercises}
                 onRowMove={this.moveExerciseRow}
                 onRowRemove={this.removeExerciseRow}
+                onExercisesAdd={() => {
+                  this.setState({ isExercisesAddModalVisible: true });
+                }}
               />
 
               <div style={{ marginLeft: 20 }}>
-                *You can drag and drop exercises to change their order
+                <em>* You can drag and drop exercises to change their order</em>
               </div>
             </Col>
           </Row>
         </Form>
+
+        <ExercisesAddModal
+          exercises={this.state.exercises}
+          exercisesOrder={this.state.exercisesOrder}
+          isVisible={this.state.isExercisesAddModalVisible}
+          onCancel={() => {
+            this.setState({ isExercisesAddModalVisible: false });
+          }}
+          onOk={({ exercises, exercisesOrder }) => {
+            this.setState({
+              exercises,
+              exercisesOrder,
+              isExercisesAddModalVisible: false
+            });
+          }}
+        />
       </Modal>
     );
   }

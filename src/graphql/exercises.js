@@ -7,7 +7,10 @@ const GET_EXERCISES = {
     query($typeUid: Int!) {
       exercises(where: { type: { uid: $typeUid } }) {
         id
+        title
+        description
         type {
+          id
           uid
         }
         answer
@@ -18,7 +21,10 @@ const GET_EXERCISES = {
     query($typeUid: Int!) {
       exercises(where: { type: { uid: $typeUid } }) {
         id
+        title
+        description
         type {
+          id
           uid
         }
         options

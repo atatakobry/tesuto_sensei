@@ -3,11 +3,9 @@ import { Form, Input, Table, Button, Divider } from 'antd';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import { getLowerLatinPrefix } from '../../common';
+import { getLowerLatinPrefix, DraggableBodyRow } from '../../../common';
 
-import DraggableBodyRow from './DraggableBodyRow';
-
-const TitleField = ({ title, onChange }) => (
+const TestTitle = ({ title, onChange }) => (
   <Form.Item label="TITLE">
     <Input
       placeholder="Input title..."
@@ -17,7 +15,7 @@ const TitleField = ({ title, onChange }) => (
   </Form.Item>
 );
 
-const DescriptionField = ({ description, onChange }) => (
+const TestDescription = ({ description, onChange }) => (
   <Form.Item label="DESCRIPTION">
     <Input.TextArea
       rows={3}
@@ -32,7 +30,9 @@ const renderExercise = ({ title, description, options, answer }) => {
   return (
     <Fragment>
       <div>{title}</div>
-      <div>{description}</div>
+      <div>
+        <em>{description}</em>
+      </div>
       <div>
         {options &&
           options.length >= 1 &&
@@ -42,7 +42,13 @@ const renderExercise = ({ title, description, options, answer }) => {
     </Fragment>
   );
 };
-const ExercisesList = ({ exercises, onRowMove, onRowRemove }) => (
+
+const ExercisesList = ({
+  exercises,
+  onRowMove,
+  onRowRemove,
+  onExercisesAdd
+}) => (
   <Table
     style={{ position: 'relative', top: '-8px' }}
     size="small"
@@ -63,7 +69,7 @@ const ExercisesList = ({ exercises, onRowMove, onRowRemove }) => (
       },
       {
         title: (
-          <Button size="small" icon="plus" onClick={() => {}}>
+          <Button size="small" icon="plus" onClick={onExercisesAdd}>
             Add exercises
           </Button>
         ),
@@ -99,6 +105,7 @@ const ExercisesList = ({ exercises, onRowMove, onRowRemove }) => (
     onRow={(record, index) => ({ index, moveRow: onRowMove })}
   />
 );
+
 const ExercisesDraggableList = DragDropContext(HTML5Backend)(ExercisesList);
 
-export { TitleField, DescriptionField, ExercisesDraggableList };
+export { TestTitle, TestDescription, ExercisesDraggableList };
