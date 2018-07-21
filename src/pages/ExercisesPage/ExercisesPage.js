@@ -1,34 +1,15 @@
-import React, { Component } from 'react';
-import { ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
+import React, { Fragment } from 'react';
 
-import { prisma } from '../../configs';
 import { exerciseTypes } from '../../dictionaries';
 
 import { Exercises } from './Exercises';
 
-class ExercisesPage extends Component {
-  constructor() {
-    super();
+const ExercisesPage = () => (
+  <Fragment>
+    <h1>Exercises</h1>
 
-    this.client = new ApolloClient({
-      uri: prisma.url
-    });
-  }
-
-  render() {
-    return (
-      <ApolloProvider client={this.client}>
-        <div>
-          <h1>Exercises</h1>
-
-          {exerciseTypes.LIST.map(({ uid }) => (
-            <Exercises key={uid} typeUid={uid} />
-          ))}
-        </div>
-      </ApolloProvider>
-    );
-  }
-}
+    {exerciseTypes.LIST.map(({ uid }) => <Exercises key={uid} typeUid={uid} />)}
+  </Fragment>
+);
 
 export default ExercisesPage;

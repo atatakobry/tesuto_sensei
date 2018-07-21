@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
 import { Layout } from 'antd';
 
-import { routes } from './configs';
+import { routes, prisma } from './configs';
 import { ScrollRestoration, NavMenu, Breadcrumbs, NavRoutes } from './common';
 
 import logo from './logo.svg';
@@ -12,6 +14,10 @@ import styles from './App.module.scss';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
+  client = new ApolloClient({
+    uri: prisma.url
+  });
+
   render() {
     return (
       <Router className={styles.App}>
@@ -27,7 +33,9 @@ class App extends Component {
               <Breadcrumbs routes={routes} />
 
               <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-                <NavRoutes routes={routes} />
+                <ApolloProvider client={this.client}>
+                  <NavRoutes routes={routes} />
+                </ApolloProvider>
               </div>
             </Content>
 
