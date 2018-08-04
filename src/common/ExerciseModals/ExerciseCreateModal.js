@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import { Modal, Form, Button } from 'antd';
 
 import { CREATE_EXERCISE, GET_EXERCISES } from '../../graphql/exercises';
-import { exerciseTypes } from '../../dictionaries/index';
+import { exerciseTypes } from '../../dictionaries';
 
 import isFieldVisible from './isFieldVisible';
 import {

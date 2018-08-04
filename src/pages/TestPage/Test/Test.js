@@ -4,106 +4,101 @@ import { Query, Mutation } from 'react-apollo';
 import { Card, Button, Divider } from 'antd';
 
 import { GET_TEST, DELETE_TEST } from '../../../graphql/tests';
-import { Loader, onTestDeleteConfirm } from '../../../common';
+import { Modal, Loader } from '../../../common';
+import { TestEditModal } from '../../../modals';
 
 import TestDetails from './TestDetails';
-import TestEditModal from '../TestEditModal';
 
 class Test extends Component {
-  state = {
-    isTestEditModalVisible: false
+  showTestDeleteConfirm = ({ onOk }) => {
+    Modal.confirm({
+      title: 'Are you sure want to delete this test?',
+      cancelText: 'No',
+      okText: 'Yes',
+      okType: 'danger',
+      onOk: onOk
+    });
   };
 
-  onTestEditModalShow = () => {
-    this.setState({ isTestEditModalVisible: true });
+  showTestEditModal = ({ test }) => {
+    Modal.show({
+      modal: <TestEditModal test={test} />,
+      onDismiss: () => console.log('onDismiss'),
+      onConfirm: () => console.log('onConfirm')
+    });
   };
 
-  onTestEditModalClose = () => {
-    this.setState({ isTestEditModalVisible: false });
-  };
+  render = () => (
+    <Query query={GET_TEST} variables={{ id: this.props.id }}>
+      {({ loading, data }) => {
+        if (loading) return <Loader />;
 
-  render() {
-    return (
-      <Query query={GET_TEST} variables={{ id: this.props.id }}>
-        {({ loading, data }) => {
-          if (loading) return <Loader />;
+        let { test } = data;
+        // NOTE: sort exercises by declared in `exercisesOrder` order
+        test = {
+          ...test,
+          // NOTE: use `[...test.exercises].sort` as immutable sort
+          exercises: [...test.exercises].sort(
+            (a, b) =>
+              test.exercisesOrder.indexOf(a.id) >
+              test.exercisesOrder.indexOf(b.id)
+          )
+        };
 
-          let { test } = data;
-          // NOTE: sort exercises by declared in `exercisesOrder` order
-          test = {
-            ...test,
-            // NOTE: use `[...test.exercises].sort` as immutable sort
-            exercises: [...test.exercises].sort(
-              (a, b) =>
-                test.exercisesOrder.indexOf(a.id) >
-                test.exercisesOrder.indexOf(b.id)
-            )
-          };
-
-          return (
-            <Fragment>
-              <Card
-                title={
-                  <Fragment>
-                    <h2 style={{ margin: 0 }}>{test.title}</h2>
-                    <div>(number of exercises: {test.exercises.length})</div>
-                  </Fragment>
-                }
-                extra={
-                  <div className="ant-card-extra-inner">
-                    <Route
-                      render={({ history }) => (
-                        <Mutation
-                          mutation={DELETE_TEST}
-                          variables={{ id: this.props.id }}
-                          onCompleted={() => {
-                            history.push('/tests');
-                          }}
-                        >
-                          {(deleteTest, { loading }) => (
-                            <Button
-                              size="small"
-                              type="danger"
-                              icon="delete"
-                              loading={loading}
-                              onClick={() =>
-                                onTestDeleteConfirm({ onOk: deleteTest })
-                              }
-                            >
-                              Delete test
-                            </Button>
-                          )}
-                        </Mutation>
-                      )}
-                    />
-
-                    <Divider type="vertical" />
-
-                    <Button
-                      size="small"
-                      icon="edit"
-                      onClick={this.onTestEditModalShow}
+        return (
+          <Card
+            title={
+              <Fragment>
+                <h2 style={{ margin: 0 }}>{test.title}</h2>
+                <div>(number of exercises: {test.exercises.length})</div>
+              </Fragment>
+            }
+            extra={
+              <div className="ant-card-extra-inner">
+                <Route
+                  render={({ history }) => (
+                    <Mutation
+                      mutation={DELETE_TEST}
+                      variables={{ id: this.props.id }}
+                      onCompleted={() => {
+                        history.push('/tests');
+                      }}
                     >
-                      Edit test
-                    </Button>
-                  </div>
-                }
-              >
-                <TestDetails test={test} />
-              </Card>
+                      {(deleteTest, { loading }) => (
+                        <Button
+                          size="small"
+                          type="danger"
+                          icon="delete"
+                          loading={loading}
+                          onClick={() =>
+                            this.showTestDeleteConfirm({ onOk: deleteTest })
+                          }
+                        >
+                          Delete test
+                        </Button>
+                      )}
+                    </Mutation>
+                  )}
+                />
 
-              <TestEditModal
-                test={test}
-                isVisible={this.state.isTestEditModalVisible}
-                onCancel={this.onTestEditModalClose}
-                onOk={this.onTestEditModalClose}
-              />
-            </Fragment>
-          );
-        }}
-      </Query>
-    );
-  }
+                <Divider type="vertical" />
+
+                <Button
+                  size="small"
+                  icon="edit"
+                  onClick={() => this.showTestEditModal({ test })}
+                >
+                  Edit test
+                </Button>
+              </div>
+            }
+          >
+            <TestDetails test={test} />
+          </Card>
+        );
+      }}
+    </Query>
+  );
 }
 
 export default Test;

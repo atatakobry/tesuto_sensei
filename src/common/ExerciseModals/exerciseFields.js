@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Select, Input } from 'antd';
 
-import { exerciseTypes } from '../../dictionaries/index';
+import { exerciseTypes } from '../../dictionaries';
 
 const formItemLayout = {
   labelCol: {

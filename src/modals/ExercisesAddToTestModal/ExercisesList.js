@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Switch, Table } from 'antd';
 
-import { exerciseTypes } from '../../../dictionaries';
-import { getLowerLatinPrefix } from '../../../common';
+import { exerciseTypes } from '../../dictionaries';
+import { getLowerLatinPrefix } from '../../common';
 
 import { Context } from './store';
 
@@ -96,17 +96,15 @@ const columns = {
 };
 
 class ExercisesList extends Component {
-  render() {
-    return (
-      <Table
-        bordered
-        size="small"
-        rowKey="id"
-        columns={columns[this.props.exercises[0].type.uid]}
-        dataSource={this.props.exercises}
-      />
-    );
-  }
+  render = () => (
+    <Table
+      bordered
+      size="small"
+      rowKey="id"
+      columns={columns[this.props.exercises[0].type.uid]}
+      dataSource={this.props.exercises}
+    />
+  );
 }
 
 export default ExercisesList;

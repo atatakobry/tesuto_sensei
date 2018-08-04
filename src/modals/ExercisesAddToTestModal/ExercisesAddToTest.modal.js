@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { Modal, Button } from 'antd';
+import { compose, withState, withHandlers } from 'recompose';
+import { Button } from 'antd';
 
-import { exerciseTypes } from '../../../dictionaries';
+import { exerciseTypes } from '../../dictionaries';
+import { withApolloProvider, Modal } from '../../common';
 
 import { Context, Provider } from './store';
 import Exercises from './Exercises';
 
-class ExercisesAddModal extends Component {
+class ExercisesAddToTestModal extends Component {
   render() {
     return (
       <Provider
@@ -55,4 +57,17 @@ class ExercisesAddModal extends Component {
   }
 }
 
-export default ExercisesAddModal;
+export default compose(
+  withState('isVisible', 'setVisibility', true),
+  withHandlers({
+    onCancel: ({ setVisibility, onDismiss }) => () => {
+      setVisibility(false);
+      onDismiss();
+    },
+    onOk: ({ setVisibility, onConfirm }) => () => {
+      setVisibility(false);
+      onConfirm();
+    }
+  }),
+  withApolloProvider
+)(ExercisesAddToTestModal);

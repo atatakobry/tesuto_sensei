@@ -3,7 +3,7 @@ import { Form, Input, Table, Button, Divider } from 'antd';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import { getLowerLatinPrefix, DraggableBodyRow } from '../../../common';
+import { getLowerLatinPrefix, DraggableBodyRow } from '../../common';
 
 const TestTitle = ({ title, onChange }) => (
   <Form.Item label="TITLE">
@@ -26,22 +26,20 @@ const TestDescription = ({ description, onChange }) => (
   </Form.Item>
 );
 
-const renderExercise = ({ title, description, options, answer }) => {
-  return (
-    <Fragment>
-      <div>{title}</div>
-      <div>
-        <em>{description}</em>
-      </div>
-      <div>
-        {options &&
-          options.length >= 1 &&
-          getLowerLatinPrefix(options.indexOf(answer))}
-        {answer}
-      </div>
-    </Fragment>
-  );
-};
+const renderExercise = ({ title, description, options, answer }) => (
+  <Fragment>
+    <div>{title}</div>
+    <div>
+      <em>{description}</em>
+    </div>
+    <div>
+      {options &&
+        options.length >= 1 &&
+        getLowerLatinPrefix(options.indexOf(answer))}
+      {answer}
+    </div>
+  </Fragment>
+);
 
 const ExercisesList = ({
   exercises,

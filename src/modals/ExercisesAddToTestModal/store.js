@@ -15,9 +15,9 @@ class Provider extends Component {
     exercisesOrder: this.props.exercisesOrder
   };
 
-  componentWillReceiveProps({ exercises, exercisesOrder }) {
+  componentWillReceiveProps = ({ exercises, exercisesOrder }) => {
     this.setState({ exercises, exercisesOrder });
-  }
+  };
 
   resetState = () => {
     this.setState({
@@ -53,20 +53,18 @@ class Provider extends Component {
     );
   };
 
-  render() {
-    return (
-      <Context.Provider
-        value={{
-          ...this.state,
-          addExercise: this.addExercise,
-          removeExercise: this.removeExercise,
-          resetState: this.resetState
-        }}
-      >
-        {this.props.children}
-      </Context.Provider>
-    );
-  }
+  render = () => (
+    <Context.Provider
+      value={{
+        ...this.state,
+        addExercise: this.addExercise,
+        removeExercise: this.removeExercise,
+        resetState: this.resetState
+      }}
+    >
+      {this.props.children}
+    </Context.Provider>
+  );
 }
 
 export { Context, Provider };
