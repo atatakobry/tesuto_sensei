@@ -4,27 +4,13 @@ import update from 'immutability-helper';
 const Context = React.createContext();
 
 class Provider extends Component {
-  initialState = {
-    exercises: [],
-    exercisesOrder: []
-  };
-
   state = {
-    ...this.initialState,
-    exercises: this.props.exercises,
-    exercisesOrder: this.props.exercisesOrder
-  };
-
-  componentWillReceiveProps = ({ exercises, exercisesOrder }) => {
-    this.setState({ exercises, exercisesOrder });
-  };
-
-  resetState = () => {
-    this.setState({
-      ...this.initialState,
+    exercises: [],
+    exercisesOrder: [],
+    ...{
       exercises: this.props.exercises,
       exercisesOrder: this.props.exercisesOrder
-    });
+    }
   };
 
   addExercise = ({ exercise }) => {
@@ -58,8 +44,7 @@ class Provider extends Component {
       value={{
         ...this.state,
         addExercise: this.addExercise,
-        removeExercise: this.removeExercise,
-        resetState: this.resetState
+        removeExercise: this.removeExercise
       }}
     >
       {this.props.children}

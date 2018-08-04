@@ -4,16 +4,12 @@ import update from 'immutability-helper';
 const Context = React.createContext();
 
 class Provider extends Component {
-  initialState = {
+  state = {
     id: '',
     title: '',
     description: '',
     exercises: [],
-    exercisesOrder: []
-  };
-
-  state = {
-    ...this.initialState,
+    exercisesOrder: [],
     ...this.props.test
   };
 

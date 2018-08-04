@@ -16,7 +16,7 @@ class ExercisesAddToTestModal extends Component {
         exercisesOrder={this.props.exercisesOrder}
       >
         <Context.Consumer>
-          {({ exercises, exercisesOrder, resetState }) => (
+          {({ exercises, exercisesOrder }) => (
             <Modal
               width={1360}
               visible={this.props.isVisible}
@@ -35,7 +35,6 @@ class ExercisesAddToTestModal extends Component {
                   </Button>
                 </Fragment>
               }
-              afterClose={resetState}
               // NOTE: pass `onCancel` handler for close button in top right corner of modal
               onCancel={this.props.onCancel}
             >
