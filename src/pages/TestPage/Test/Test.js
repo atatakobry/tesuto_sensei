@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
-import { Query, Mutation } from 'react-apollo';
+import { withApollo, Query, Mutation } from 'react-apollo';
 import { Card, Button, Divider } from 'antd';
 
 import { GET_TEST, DELETE_TEST } from '../../../graphql/tests';
@@ -29,7 +29,7 @@ class Test extends Component {
 
   render = () => (
     <Query query={GET_TEST} variables={{ id: this.props.id }}>
-      {({ loading, data, refetch }) => {
+      {({ loading, data }) => {
         if (loading) return <Loader />;
 
         let { test } = data;
@@ -89,8 +89,33 @@ class Test extends Component {
                     this.showTestEditModal({
                       test,
                       // NOTE: update test after editing
-                      // TODO: mb find the way to manually update cache, w/o gql request
-                      onConfirm: refetch
+                      onConfirm: ({
+                        id,
+                        title,
+                        description,
+                        exercises,
+                        exercisesOrder
+                      }) => {
+                        const { test } = this.props.client.readQuery({
+                          query: GET_TEST,
+                          variables: { id: this.props.id }
+                        });
+
+                        this.props.client.writeQuery({
+                          query: GET_TEST,
+                          variables: { id: this.props.id },
+                          data: {
+                            test: {
+                              ...test,
+                              id,
+                              title,
+                              description,
+                              exercises,
+                              exercisesOrder
+                            }
+                          }
+                        });
+                      }
                     })
                   }
                 >
@@ -107,4 +132,4 @@ class Test extends Component {
   );
 }
 
-export default Test;
+export default withApollo(Test);

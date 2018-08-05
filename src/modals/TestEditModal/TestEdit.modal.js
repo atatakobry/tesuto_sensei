@@ -61,7 +61,15 @@ class TestEditModal extends Component {
                     },
                     where: { id }
                   }}
-                  onCompleted={this.props.onOk}
+                  onCompleted={() => {
+                    this.props.onOk({
+                      id,
+                      title,
+                      description,
+                      exercises,
+                      exercisesOrder
+                    });
+                  }}
                 >
                   {(updateExercise, { loading }) => (
                     <Button
@@ -127,9 +135,15 @@ export default compose(
   withState('isVisible', 'setVisibility', true),
   withHandlers({
     onCancel: ({ setVisibility }) => () => setVisibility(false),
-    onOk: ({ setVisibility, onConfirm }) => () => {
+    onOk: ({ setVisibility, onConfirm }) => ({
+      id,
+      title,
+      description,
+      exercises,
+      exercisesOrder
+    }) => {
       setVisibility(false);
-      onConfirm();
+      onConfirm({ id, title, description, exercises, exercisesOrder });
     }
   }),
   withApolloProvider
