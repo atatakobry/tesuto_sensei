@@ -13,12 +13,12 @@ Modal.show = ({ modal, onDismiss = () => {}, onConfirm = () => {} }) => {
         ...modal,
         props: {
           ...modal.props,
-          onDismiss: () => {
-            onDismiss();
+          onDismiss: data => {
+            onDismiss(data);
             unmount();
           },
-          onConfirm: () => {
-            onConfirm();
+          onConfirm: data => {
+            onConfirm(data);
             unmount();
           }
         }

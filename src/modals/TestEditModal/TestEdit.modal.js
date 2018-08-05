@@ -15,7 +15,7 @@ import {
 import ExercisesAddToTestModal from '../ExercisesAddToTestModal';
 
 class TestEditModal extends Component {
-  showExercisesAddToTestModal = ({ exercises, exercisesOrder }) => {
+  showExercisesAddToTestModal = ({ exercises, exercisesOrder, onConfirm }) => {
     Modal.show({
       modal: (
         <ExercisesAddToTestModal
@@ -23,8 +23,7 @@ class TestEditModal extends Component {
           exercisesOrder={exercisesOrder}
         />
       ),
-      onDismiss: () => console.log('onDismiss'),
-      onConfirm: () => console.log('onConfirm')
+      onConfirm
     });
   };
 
@@ -101,7 +100,10 @@ class TestEditModal extends Component {
                     onExercisesAdd={() =>
                       this.showExercisesAddToTestModal({
                         exercises,
-                        exercisesOrder
+                        exercisesOrder,
+                        // NOTE: update test's exercises after editing
+                        onConfirm: ({ exercises, exercisesOrder }) =>
+                          setState({ exercises, exercisesOrder })
                       })
                     }
                   />
@@ -124,10 +126,7 @@ class TestEditModal extends Component {
 export default compose(
   withState('isVisible', 'setVisibility', true),
   withHandlers({
-    onCancel: ({ setVisibility, onDismiss }) => () => {
-      setVisibility(false);
-      onDismiss();
-    },
+    onCancel: ({ setVisibility }) => () => setVisibility(false),
     onOk: ({ setVisibility, onConfirm }) => () => {
       setVisibility(false);
       onConfirm();

@@ -59,13 +59,10 @@ class ExercisesAddToTestModal extends Component {
 export default compose(
   withState('isVisible', 'setVisibility', true),
   withHandlers({
-    onCancel: ({ setVisibility, onDismiss }) => () => {
+    onCancel: ({ setVisibility }) => () => setVisibility(false),
+    onOk: ({ setVisibility, onConfirm }) => ({ exercises, exercisesOrder }) => {
       setVisibility(false);
-      onDismiss();
-    },
-    onOk: ({ setVisibility, onConfirm }) => () => {
-      setVisibility(false);
-      onConfirm();
+      onConfirm({ exercises, exercisesOrder });
     }
   }),
   withApolloProvider

@@ -20,17 +20,16 @@ class Test extends Component {
     });
   };
 
-  showTestEditModal = ({ test }) => {
+  showTestEditModal = ({ test, onConfirm }) => {
     Modal.show({
       modal: <TestEditModal test={test} />,
-      onDismiss: () => console.log('onDismiss'),
-      onConfirm: () => console.log('onConfirm')
+      onConfirm
     });
   };
 
   render = () => (
     <Query query={GET_TEST} variables={{ id: this.props.id }}>
-      {({ loading, data }) => {
+      {({ loading, data, refetch }) => {
         if (loading) return <Loader />;
 
         let { test } = data;
@@ -86,7 +85,14 @@ class Test extends Component {
                 <Button
                   size="small"
                   icon="edit"
-                  onClick={() => this.showTestEditModal({ test })}
+                  onClick={() =>
+                    this.showTestEditModal({
+                      test,
+                      // NOTE: update test after editing
+                      // TODO: mb find the way to manually update cache, w/o gql request
+                      onConfirm: refetch
+                    })
+                  }
                 >
                   Edit test
                 </Button>
